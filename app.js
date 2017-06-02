@@ -20,12 +20,13 @@ class ShoppingListItem extends React.Component {
 
   render() {
     var style = {
-      textDecoration: this.state.done ? 'line-through' : 'bold'
+      textDecoration: this.state.done ? 'line-through' : 'none'
     };
     return (
       <li
         style={style}
         onClick={this.onClick.bind(this)}
+        // onDoubleClick={this.onClick.bind(this)}
       >
         {this.props.item}
       </li>
@@ -34,11 +35,14 @@ class ShoppingListItem extends React.Component {
 }
 
 var List = (props) => (
+  <div>
+  <h2>Items to Get</h2>
   <ul>
-    {props.items.map(item =>
-      <ShoppingListItem item={item} />
+    {props.items.map((item, i) =>
+      <ShoppingListItem key={i} item={item} />
     )}
   </ul>
+  </div>
 );
 
 ReactDOM.render(<List items={['Kale', 'Cucumber', 'Onions']} />, document.getElementById('app'));
